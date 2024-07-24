@@ -12,11 +12,23 @@ TEMP_FILE="/sys/class/hwmon/hwmon4/temp1_input"
 # Fan control file
 FAN_CONTROL_FILE="/proc/acpi/ibm/fan"
 
+# Default fan level to ensure safety at startup
+DEFAULT_FAN_LEVEL=2
+
 # Delay between checks (in seconds)
 DELAY=10
 
+# Initialize fan to default level at the start
+if [ -f "$FAN_CONTROL_FILE" ]; then
+  echo "Setting fan to default level $DEFAULT_FAN_LEVEL for safety at startup."
+  echo "level $DEFAULT_FAN_LEVEL" > $FAN_CONTROL_FILE
+else
+  echo "Fan control file $FAN_CONTROL_FILE not found. Exiting."
+  exit 1
+fi
+
 # Variable to keep track of the current fan level
-CURRENT_FAN_LEVEL=1
+CURRENT_FAN_LEVEL=$DEFAULT_FAN_LEVEL
 
 while true; do
   # Check if temperature file exists
