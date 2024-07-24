@@ -1,0 +1,10 @@
+[Unit]
+Description=Manage Fan Speed Based on Temperature
+
+[Service]
+ExecStart=/usr/local/bin/myfan.sh
+Type=oneshot
+
+[Install]
+WantedBy=multi-user.target
+
