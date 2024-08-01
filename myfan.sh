@@ -4,7 +4,7 @@
 THRESHOLD_1=60
 THRESHOLD_2=65
 THRESHOLD_3=75
-THRESHOLD_DISENGAGED=85
+THRESHOLD_DISENGAGED=85 #at this temperature, fan goes FAST as it can go physically, no pwm!
 
 # File to read temperature from
 TEMP_FILE="/sys/class/hwmon/hwmon4/temp1_input"
